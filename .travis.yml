@@ -1,3 +1,5 @@
+before-install: - chmod +x gradlew
+
 language: java
 
 script: ./gradlew cucumber
