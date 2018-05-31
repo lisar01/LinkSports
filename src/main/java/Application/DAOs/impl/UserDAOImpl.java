@@ -13,10 +13,23 @@ public class UserDAOImpl implements UserDAOCustom {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Override
+    public User getByUsername(String username) throws Exception {
+        try {
+            Query query = entityManager.createNativeQuery("SELECT * FROM linksports.user " +
+                    "WHERE username LIKE :username", User.class);
+            query.setParameter("username", username);
+            return (User) query.getSingleResult();
+        }
+        catch (Exception e) {
+            throw e;
+        }
+    }
+
     //Ejemplo
     @Override
     public List getFirstNamesLike(String firstName) {
-        Query query = entityManager.createNativeQuery("SELECT * FROM linkedindeportistas.user as user" +
+        Query query = entityManager.createNativeQuery("SELECT * FROM linksports.user as user" +
                 "WHERE user.firstname LIKE ?", User.class);
         query.setParameter(1, firstName + "%");
         return query.getResultList();
