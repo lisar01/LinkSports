@@ -3,3 +3,5 @@
 # LinkSports
 
 Trabajo Practico de la materia Elementos de Ingenieria en Software. LinkSport es una red social similar a Linkedn que conecta atletas, coaches y equipos.
+
+- VSM: https://realtimeboard.com/app/board/o9J_kzDUOlk=/
