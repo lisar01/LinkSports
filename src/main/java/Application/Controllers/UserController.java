@@ -3,8 +3,11 @@ package Application.Controllers;
 import Application.DAOs.UserDAO;
 import Application.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/User") // This means URL's start with /Usuarios (after Application path)
 public class UserController {
@@ -14,8 +17,13 @@ public class UserController {
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(@RequestBody User user) {
-        if(userDAO.getByUsername(user.getUsername()) == null) return "Datos invalidos";
-        else return "Login exitoso!";
+        try {
+            if(userDAO.checkLogin(user)) return "Login exitoso!";
+        }
+        catch (Exception e) {
+            return "Datos incorrectos.";
+        }
+        return "Error.";
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -36,9 +44,9 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public String updateUser(@RequestBody User user) {
+    public HttpStatus updateUser(@RequestBody User user) {
         //El metodo save en una entidad con un ID ya existente, funciona como un update
         userDAO.save(user);
-        return "Updated";
+        return HttpStatus.OK;
     }
 }

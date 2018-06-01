@@ -14,16 +14,12 @@ public class UserDAOImpl implements UserDAOCustom {
     private EntityManager entityManager;
 
     @Override
-    public User getByUsername(String username) throws Exception {
-        try {
-            Query query = entityManager.createNativeQuery("SELECT * FROM linksports.user " +
-                    "WHERE username LIKE :username", User.class);
-            query.setParameter("username", username);
-            return (User) query.getSingleResult();
-        }
-        catch (Exception e) {
-            throw e;
-        }
+    public boolean checkLogin(User user) {
+        Query query = entityManager.createNativeQuery("SELECT * FROM linksports.user " +
+                "WHERE username LIKE :username and password LIKE :password", User.class);
+        query.setParameter("username", user.getUsername());
+        query.setParameter("password", user.getPassword());
+        return query.getSingleResult() != null;
     }
 
     //Ejemplo
