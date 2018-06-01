@@ -11,17 +11,18 @@ import org.springframework.web.client.RestTemplate;
 
 import static org.hamcrest.core.Is.is;
 
-public class BasicStepdefs {
+public class Logindef {
     private RestTemplate restTemplate = new RestTemplate();
     private String url = "http://localhost:8080";
-    ResponseEntity<String> response;
+    private ResponseEntity<String> response;
 
-    @When("^I do a GET request to Test controller")
-    public void I_do_a_GET_request_to_Test_controller() throws Throwable{
-        response = restTemplate.getForEntity(url + "/Test", String.class);
+    @When("^I login with user admin")
+    public void I_login_with_user_admin() throws Throwable{
+        HttpEntity<User> request = new HttpEntity<>(new User("admin", "admin"));
+        response = restTemplate.postForEntity(url + "/User/login", request, String.class);
     }
-    @Then("^I should get OK Response")
-    public void I_should_get_a_OK_Response() {
-        Assert.assertThat(response.getBody(), is("OK"));
+    @Then("^I get Login exitoso text")
+    public void I_get_login_exitoso_text() {
+        Assert.assertThat(response.getBody(), is("Login exitoso!"));
     }
 }

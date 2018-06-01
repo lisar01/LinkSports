@@ -1,52 +1,50 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-        <!-- <link href="css/style.css" rel="stylesheet"> -->
-        <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-    </head>
-    <body>
-			<!-- Navbar and logo -->
-			<nav class="navbar navbar-dark bg-dark">
-				<div class="col-md-5" style="padding-left: 20%">
-					<a class="navbar-brand" href="#">
-						<img src="linksports-logo.png" height="45">
-					</a>
+<html ng-app="LinkSports">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- <link href="css/style.css" rel="stylesheet"> -->
+		<link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+	</head>
+	<body ng-controller="UserController">
+	<!-- Navbar and logo -->
+	<nav class="navbar navbar-dark bg-dark">
+		<div class="col-md-5" style="padding-left: 20%">
+			<a class="navbar-brand" href="#">
+				<img src="linksports-logo.png" height="45">
+			</a>
+		</div>
+		<form class="col-md-7">
+			<div class="form-row">
+				<div class="col">
+					<input type="text" ng-model="username" class="form-control" placeholder="Usuario">
 				</div>
-				<form class="col-md-7">
-					<div class="form-row">
-						<div class="col">
-							<input type="text" class="form-control" placeholder="Usuario">
-						</div>
-						<div class="col">
-							<input type="password" class="form-control" placeholder="Constraseña">
-						</div>
-						<div class="col">
-							<button type="submit" class="btn btn-primary">Iniciar sesión</button>
-						</div>
-					</div>
-				</form>
-			</nav>
-			<div class="container">
-				<form>
-					<div class="form-group">
-						<label for="exampleInputEmail1">Email address</label>
-						<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-						<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputPassword1">Password</label>
-						<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-					</div>
-					<div class="form-group form-check">
-						<input type="checkbox" class="form-check-input" id="exampleCheck1">
-						<label class="form-check-label" for="exampleCheck1">Check me out</label>
-					</div>
-					<button type="submit" class="btn btn-primary">Submit</button>
-				</form>
+				<div class="col">
+					<input type="password" ng-model="password" class="form-control" placeholder="Constraseña">
+				</div>
+				<div class="col">
+					<button ng-click="login()" class="btn btn-primary">Iniciar sesión</button>
+				</div>
 			</div>
-      <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
-    </body>
+		</form>
+	</nav>
+	<div class="container">
+		<form class="col-md-4" style="padding-top: 5%">
+			<div class="form-group">
+				<label for="username_login">{{ userlabel }}</label>
+				<input type="email" class="form-control" id="username_login" placeholder="Ingrese usuario">
+			</div>
+			<div class="form-group">
+				<label for="password_login">Constraseña</label>
+				<input type="password" class="form-control" id="password_login" placeholder="Ingrese constraseña">
+			</div>
+			<button type="submit" class="btn btn-primary">Registrarme</button>
+		</form>
+	</div>
+	<script src="node_modules/angular/angular.js"></script>
+	<script src="node_modules/jquery/dist/jquery.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="js/UserController.js"></script>
+	</body>
 </html>
