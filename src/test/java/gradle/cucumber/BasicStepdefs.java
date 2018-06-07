@@ -22,6 +22,6 @@ public class BasicStepdefs {
     }
     @Then("^I should get OK Response")
     public void I_should_get_a_OK_Response() {
-        Assert.assertThat(response.getBody(), is("OK"));
+        Assert.assertThat(response.getStatusCode(), is(HttpStatus.OK));
     }
 }

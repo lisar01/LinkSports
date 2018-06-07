@@ -22,6 +22,6 @@ public class TestControllerTest {
     @Test
     public void test_do_get_request_to_test_controller_and_receive_ok_response() {
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
-        Assert.assertThat(response.getBody(), is("OK"));
+        Assert.assertThat(response.getStatusCode(), is(HttpStatus.OK));
     }
 }

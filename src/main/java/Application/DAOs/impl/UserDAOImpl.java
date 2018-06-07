@@ -1,7 +1,10 @@
 package Application.DAOs.impl;
 
+import Application.DAOs.UserDAO;
 import Application.DAOs.UserDAOCustom;
 import Application.Model.User;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.orm.hibernate5.HibernateTemplate;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
