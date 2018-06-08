@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="LinkSports">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- <link href="css/style.css" rel="stylesheet"> -->
+		<link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+	</head>
+	<body ng-controller="SearchController">
+	<!-- Navbar and logo -->
+	<nav class="navbar navbar-dark bg-dark">
+        <div class="col-md-1">
+            <a class="navbar-brand" href="#">
+                <img src="linksports-logo.png" height="35">
+            </a>
+        </div>
+        <form ng-submit="search()" class="col-md-3">
+            <div class="form-row">
+                <div class="col input-group">
+                    <input type="text" class="form-control" placeholder="Nombre" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">Buscar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+        <div class="col-md-6">
+
+        </div>
+        
+	</nav>
+	<div class="container">
+		
+	</div>
+	<script src="node_modules/angular/angular.js"></script>
+	<script src="node_modules/jquery/dist/jquery.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="js/UserController.js"></script>
+	</body>
+</html>

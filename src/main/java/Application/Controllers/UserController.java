@@ -47,10 +47,8 @@ public class UserController {
             if(userDAO.checkLogin(user)) return ResponseEntity.ok().body(new ResponseModel("Login exitoso!"));
         }
         catch (Exception e) {
-            //return new ResponseModel("Datos incorrectos.", HttpStatus.NOT_FOUND);
             return ResponseEntity.badRequest().body(new ResponseModel("Datos incorrectos."));
         }
-        //return new ResponseModel("Se ha producido un error", HttpStatus.INTERNAL_SERVER_ERROR);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseModel("Se ha producido un error."));
     }
 
