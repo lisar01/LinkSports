@@ -1,6 +1,8 @@
 package Application.Model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -10,6 +12,13 @@ public class User {
     @Column(nullable = false)
     private String username;
     private String password;
+    /*private String nombre;
+    private String apellido;
+    private String tipo;
+    private String deporte;
+    private List<User> contactos = new ArrayList<User>();
+    @OneToMany
+    private List<Mensaje> mensajes = new ArrayList<Mensaje>*/
 
     public User() {}
 

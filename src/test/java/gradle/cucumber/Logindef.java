@@ -23,6 +23,6 @@ public class Logindef {
     }
     @Then("^I get Login exitoso text")
     public void I_get_login_exitoso_text() {
-        Assert.assertThat(response.getBody(), is("Login exitoso!"));
+        Assert.assertThat(response.getStatusCode(), is(HttpStatus.OK));
     }
 }

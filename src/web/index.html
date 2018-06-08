@@ -15,7 +15,7 @@
 				<img src="linksports-logo.png" height="45">
 			</a>
 		</div>
-		<form class="col-md-7">
+		<form ng-submit="login()" class="col-md-7">
 			<div class="form-row">
 				<div class="col">
 					<input type="text" ng-model="username" class="form-control" placeholder="Usuario">
@@ -24,7 +24,7 @@
 					<input type="password" ng-model="password" class="form-control" placeholder="Constraseña">
 				</div>
 				<div class="col">
-					<button type="submit" ng-submit="login()" class="btn btn-primary">Iniciar sesión</button>
+					<button type="submit" class="btn btn-primary">Iniciar sesión</button>
 				</div>
 			</div>
 		</form>

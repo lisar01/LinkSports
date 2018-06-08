@@ -11,10 +11,10 @@ angular.module("LinkSports", [])
             data: {"username": $scope.username, "password": $scope.password}
         })
         .then(function(response) {
-            alert("Response: " + response.data);
+            alert(JSON.stringify(response.data.body));
         },
         function(error) {
-            alert(error);
+            alert(JSON.stringify(error.data.body));
         })
     }
 });
