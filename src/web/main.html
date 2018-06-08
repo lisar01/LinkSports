@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<!-- <link href="css/style.css" rel="stylesheet"> -->
+		<link href="css/style.css" rel="stylesheet"> -->
 		<link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 	</head>
 	<body ng-controller="SearchController">
@@ -29,14 +29,27 @@
         <div class="col-md-6">
 
         </div>
-        
 	</nav>
-	<div class="container">
-		
+	<div class="container" style="padding-top: 5%">
+        <div class="row">
+            <div class="col-md-3" ng-repeat="user in users">
+                <div class="card">
+                    <img class="card-img-top" src="profile.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{user}}</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                </div><br>
+            </div>
+        </div>
 	</div>
 	<script src="node_modules/angular/angular.js"></script>
 	<script src="node_modules/jquery/dist/jquery.js"></script>
 	<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
-	<script src="js/UserController.js"></script>
+    <script src="js/UserController.js"></script>
+    <script src="js/SearchController.js"></script>
 	</body>
 </html>
