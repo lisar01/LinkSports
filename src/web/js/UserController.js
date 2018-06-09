@@ -12,6 +12,7 @@ angular.module("LinkSports", [])
         })
         .then(function(response) {
             alert(JSON.stringify(response.data.body));
+            window.location.href = "main.html";
         },
         function(error) {
             alert(JSON.stringify(error.data.body));
