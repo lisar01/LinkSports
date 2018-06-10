@@ -3,89 +3,87 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- <link href="css/style.css" rel="stylesheet"> -->
-    <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-</head>
-<body ng-controller="UserController">
-<!-- Navbar and logo -->
-<nav class="navbar navbar-dark bg-dark">
-    <div class="col-md-5" style="padding-left: 20%">
-        <a class="navbar-brand" href="#">
-            <img src="linksports-logo.png" height="45">
-        </a>
-    </div>
-    <form ng-submit="login()" class="col-md-7">
-        <div class="form-row">
-            <div class="col">
-                <input type="text" ng-model="username" class="form-control" placeholder="Usuario">
-            </div>
-            <div class="col">
-                <input type="password" ng-model="password" class="form-control" placeholder="Constraseña">
-            </div>
-            <div class="col">
-                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
-            </div>
-        </div>
-    </form>
-</nav>
-<div class="container">
-    <div class="row">
-        <form class="col-sm-3" style="padding-top: 3%">
-            <div class="form-group">
-                <label for="username_login">{{ userlabel }}</label>
-                <input type="email" class="form-control" id="username_login" placeholder="Ingrese usuario">
-            </div>
-            <div class="form-group">
-                <label for="password_login">Contraseña</label>
-                <input type="password" class="form-control" id="password_login" placeholder="Ingrese constraseña">
-            </div>
-            <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" placeholder="Ingrese Nombre">
-            </div>
-            <div class="form-group" style="padding-bottom: 2%">
-                <label for="apellido">Apellido</label>
-                <input type="text" class="form-control" id="apellido" placeholder="Ingrese Apellido">
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
-                       value="option3">
-                <label class="form-check-label" for="inlineRadio3">Hombre</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4"
-                       value="option4">
-                <label class="form-check-label" for="inlineRadio4">Mujer</label>
-            </div>
-
-        </form>
-        <form class="col-sm-3" style="padding-top: 3%">
-            <div class="form-group" style="padding-bottom: 3%">
-                <label for="d_d">Deporte/Disciplina</label>
-                <input type="text" class="form-control" id="d_d" placeholder="Ingrese Deporte">
-            </div>
-            <div style="padding-bottom: 6%">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                           value="option1">
-                    <label class="form-check-label" for="inlineRadio1">Coach</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                           value="option2">
-                    <label class="form-check-label" for="inlineRadio2">Atleta</label>
-                </div>
-            </div>
-            <div style="padding-top: 10%">
-            <button type="submit" class="btn btn-primary">Registrarme</button>
-            </div>
-        </form>
-    </div>
-</div>
-<script src="node_modules/angular/angular.js"></script>
-<script src="node_modules/jquery/dist/jquery.js"></script>
-<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
-<script src="js/UserController.js"></script>
-</body>
+		<link href="css/style.css" rel="stylesheet">
+		<link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+	</head>
+	<body ng-controller="UserController">
+	<!-- Navbar and logo -->
+	<nav class="navbar navbar-dark bg-dark">
+		<div class="col-md-5" style="padding-left: 20%">
+			<a class="navbar-brand" href="#">
+				<img src="linksports-logo.png" height="35">
+			</a>
+		</div>
+		<form ng-submit="login()" class="col-md-7">
+			<div class="form-row">
+				<div class="col">
+					<input type="text" ng-model="username" class="form-control" placeholder="Usuario">
+				</div>
+				<div class="col">
+					<input type="password" ng-model="password" class="form-control" placeholder="Constraseña">
+				</div>
+				<div class="col">
+					<button type="submit" class="btn btn-primary">Iniciar sesión</button>
+				</div>
+			</div>
+		</form>
+	</nav>
+	<div class="container">
+		<form ng-submit="signup()" class="row" style="padding-top: 3%">
+			<div class="col-md-3">
+				<div class="form-group">
+					<label for="username_signup">Usuario</label>
+					<input type="text" ng-model="username_signup" class="form-control" id="username_signup" placeholder="Ingrese usuario">
+				</div>
+				<div class="form-group">
+					<label for="nombre">Nombre</label>
+					<input type="text" class="form-control" id="nombre" placeholder="Ingrese Nombre">
+				</div>
+				<div class="form-group" style="padding-bottom: 3%">
+					<label for="d_d">Deporte/Disciplina</label>
+					<input type="text" class="form-control" id="d_d" placeholder="Ingrese Deporte">
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
+							value="option3">
+					<label class="form-check-label" for="inlineRadio3">Hombre</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4"
+							value="option4">
+					<label class="form-check-label" for="inlineRadio4">Mujer</label>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label for="password_login">Contraseña</label>
+					<input type="password" class="form-control" id="password_login" placeholder="Ingrese constraseña">
+				</div>
+				<div class="form-group" style="padding-bottom: 2%">
+					<label for="apellido">Apellido</label>
+					<input type="text" class="form-control" id="apellido" placeholder="Ingrese Apellido">
+				</div>
+				<div style="padding-bottom: 10%">
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+								value="option1">
+						<label class="form-check-label" for="inlineRadio1">Coach</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+								value="option2">
+						<label class="form-check-label" for="inlineRadio2">Atleta</label>
+					</div>
+				</div>
+				<div style="padding-top: 10%">
+				<button type="submit" class="btn btn-primary">Registrarme</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script src="node_modules/angular/angular.js"></script>
+	<script src="node_modules/jquery/dist/jquery.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="js/UserController.js"></script>
+	</body>
 </html>
