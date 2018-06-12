@@ -23,9 +23,14 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public User addUser(@RequestBody User user) {
-        userDAO.save(user);
-        return user;
+    public ResponseEntity addUser(@RequestBody User user) {
+        if(!userDAO.existsByUsername(user.getUsername())) {
+            userDAO.save(user);
+            return ResponseEntity.ok(HttpStatus.OK);
+        }
+        else {
+            return ResponseEntity.badRequest().body(new ResponseModel("El usuario ingresado ya se encuentra en uso."));
+        }
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
@@ -43,13 +48,12 @@ public class UserController {
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ResponseEntity login(@RequestBody User user) {
-        try {
-            if(userDAO.checkLogin(user)) return ResponseEntity.ok().body(new ResponseModel("Login exitoso!"));
+        if(userDAO.checkLogin(user)) {
+            return ResponseEntity.ok().body(new ResponseModel("Login exitoso!"));
         }
-        catch (Exception e) {
+        else {
             return ResponseEntity.badRequest().body(new ResponseModel("Datos incorrectos."));
         }
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseModel("Se ha producido un error."));
     }
 
 
