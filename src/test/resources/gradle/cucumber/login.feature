@@ -1,5 +1,6 @@
 Feature: Login feature
 
   Scenario: Login with and user saved
-    When I login with user admin
-    Then I get Login exitoso text
+    Given
+    When I login with admin user
+    Then I should get Login exitoso message

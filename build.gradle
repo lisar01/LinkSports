@@ -19,6 +19,10 @@ configurations {
     }
 }
 
+bootRun {
+    main = 'Application.Application'
+}
+
 task cucumber() {
     dependsOn assemble, compileTestJava
     doLast {

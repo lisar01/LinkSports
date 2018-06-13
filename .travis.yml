@@ -1,3 +1,15 @@
 language: java
+jdk:
+ - oraclejdk8
 
-script: ./gradlew cucumber
+#deploy:
+# app: LinkSports
+services:
+ - mysql
+
+before_install:
+
+
+script:
+./gradlew bootRun
+./gradlew cucumber
