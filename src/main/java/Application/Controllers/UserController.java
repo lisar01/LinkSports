@@ -23,10 +23,10 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity addUser(@RequestBody User user) {
+    public ResponseEntity signup(@RequestBody User user) {
         if(!userDAO.existsByUsername(user.getUsername())) {
             userDAO.save(user);
-            return ResponseEntity.ok(HttpStatus.OK);
+            return ResponseEntity.ok().body(new ResponseModel("Registro exitoso!"));
         }
         else {
             return ResponseEntity.badRequest().body(new ResponseModel("El usuario ingresado ya se encuentra en uso."));
