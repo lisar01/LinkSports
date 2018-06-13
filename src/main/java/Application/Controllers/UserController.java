@@ -1,10 +1,15 @@
 package Application.Controllers;
 
+import Application.Controllers.ResponseModel.ResponseModel;
 import Application.DAOs.UserDAO;
 import Application.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/User") // This means URL's start with /Usuarios (after Application path)
 public class UserController {
@@ -18,21 +23,38 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public User addUser(@RequestBody User user) {
-        userDAO.save(user);
-        return user;
+    public ResponseEntity addUser(@RequestBody User user) {
+        if(!userDAO.existsByUsername(user.getUsername())) {
+            userDAO.save(user);
+            return ResponseEntity.ok(HttpStatus.OK);
+        }
+        else {
+            return ResponseEntity.badRequest().body(new ResponseModel("El usuario ingresado ya se encuentra en uso."));
+        }
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
-    public String deleteUser(@RequestParam long id) {
+    public ResponseEntity deleteUser(@RequestParam long id) {
         userDAO.deleteById(id);
-        return "Deleted";
+        return ResponseEntity.ok().body(new ResponseModel("Usuario eliminado."));
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public String updateUser(@RequestBody User user) {
+    public User updateUser(@RequestBody User user) {
         //El metodo save en una entidad con un ID ya existente, funciona como un update
         userDAO.save(user);
-        return "Updated";
+        return userDAO.findById(user.getId()).get();
     }
+
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    public ResponseEntity login(@RequestBody User user) {
+        if(userDAO.checkLogin(user)) {
+            return ResponseEntity.ok().body(new ResponseModel("Login exitoso!"));
+        }
+        else {
+            return ResponseEntity.badRequest().body(new ResponseModel("Datos incorrectos."));
+        }
+    }
+
+
 }
