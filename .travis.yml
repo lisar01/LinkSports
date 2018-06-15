@@ -1,10 +1,12 @@
 language: java
 
+dist: precise
+
 services:
  - mysql
 
 before_install:
-  - mysql -e 'CREATE DATABASE linksports;'
-  - mysql -e 'USE linksports;'
+  mysql -u root -e "CREATE DATABASE linksports;"
+  mysql -u root -e "GRANT ALL PRIVILEGES ON linksports.* TO 'root'@'%';";
 
 script: "./gradlew bootRun && ./gradlew cucumber"
