@@ -4,7 +4,7 @@
 
 Trabajo Practico de la materia Elementos de Ingenieria en Software. LinkSport es una red social similar a Linkedn que conecta atletas, coaches y equipos.
 
-Un atleta que busca sponsors o equipo ṕuede utilizar esta red social para encontrarlos mientras que estos buscan atletas a quienes contratar. Cualquier usuario puede agregar a otro como un contacto y entablar una conversacion mientras que para casos mas generales se puede optar por publicaciones que todos los usuarios correspondientes a su visibilidad puedan ver.
+Un atleta que busca sponsors o equipo puede utilizar esta red social para encontrarlos mientras que estos buscan atletas a quienes contratar. Cualquier usuario puede agregar a otro como un contacto y entablar una conversacion mientras que para casos mas generales se puede optar por publicaciones que todos los usuarios correspondientes a su visibilidad puedan ver.
 
 - VSM: https://realtimeboard.com/app/board/o9J_kzDUOlk=/
 
