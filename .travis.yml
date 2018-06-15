@@ -7,4 +7,5 @@ before_install:
   - mysql -e 'CREATE DATABASE linksports;'
   - mysql -e 'USE linksports;'
 
-script: "./gradlew bootRun && ./gradlew cucumber"
+script:
+./gradlew cucumber

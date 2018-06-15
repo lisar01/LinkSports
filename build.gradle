@@ -57,5 +57,6 @@ dependencies {
     testCompile 'org.assertj:assertj-core:3.9.0'
     testCompile 'io.cucumber:cucumber-java:2.4.0'
     testCompile 'io.cucumber:cucumber-junit:2.4.0'
+    testCompile 'io.cucumber:cucumber-spring:2.4.0'
     testCompile 'junit:junit:4.12'
 }

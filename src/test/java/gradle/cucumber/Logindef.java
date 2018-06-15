@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 import static org.hamcrest.core.Is.is;
 
-public class Logindef {
+public class Logindef extends AbstractStepdefs{
     private User admin;
     private RestTemplate restTemplate = new RestTemplate();
     private String url = "http://localhost:8080";
