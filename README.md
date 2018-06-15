@@ -6,6 +6,8 @@ Trabajo Practico de la materia Elementos de Ingenieria en Software. LinkSport es
 
 Un atleta que busca sponsors o equipo puede utilizar esta red social para encontrarlos mientras que estos buscan atletas a quienes contratar. Cualquier usuario puede agregar a otro como un contacto y entablar una conversacion mientras que para casos mas generales se puede optar por publicaciones que todos los usuarios correspondientes a su visibilidad puedan ver.
 
+Cada usuario, indiferente de su cargo, puede tener un registro de acontecimientos; los atletas pueden agregar de que fecha a otra jugo en algun equipo o torneo, mientras que los coaches podrian agregar a que equipo o jugador entrenaron. 
+
 - VSM: https://realtimeboard.com/app/board/o9J_kzDUOlk=/
 
 - Sprints, retrospectivas y spikes: https://docs.google.com/document/d/1cZ7DZrLJ1BQY4asTb-PnyfpkCtAEKxruIfOgEIODjds/edit?usp=sharing
