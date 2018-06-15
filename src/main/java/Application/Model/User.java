@@ -12,19 +12,22 @@ public class User {
     @Column(nullable = false)
     private String username;
     private String password;
-    /*private String nombre;
+    private String nombre;
     private String apellido;
-    private String tipo;
     private String deporte;
-    private List<User> contactos = new ArrayList<User>();
-    @OneToMany
-    private List<Mensaje> mensajes = new ArrayList<Mensaje>*/
+    private String tipo;
+    /*private List<User> contactos = new ArrayList<>();
+    private List<Message> mensajes = new ArrayList<>();*/
 
     public User() {}
 
-    public User(String username, String password) {
+    public User(String username, String password, String nombre, String apellido, String deporte, String tipo) {
         this.username = username;
         this.password = password;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.deporte = deporte;
+        this.tipo = tipo;
     }
 
     public long getId() {
@@ -33,5 +36,15 @@ public class User {
     public String getUsername() {
         return username;
     }
+    public void setUsername(String username) { this.username = username; }
     public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+    public String getNombre() {
+        return nombre;
+    }
+    public String getApellido() { return apellido; }
+    public String getDeporte() {
+        return deporte;
+    }
+    public String getTipo() { return tipo; }
 }

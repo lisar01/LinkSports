@@ -14,21 +14,29 @@ import java.util.List;
 public class UserDAOImpl implements UserDAOCustom {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private EntityManager em;
 
     @Override
     public boolean checkLogin(User user) {
-        Query query = entityManager.createNativeQuery("SELECT * FROM linksports.user " +
-                "WHERE username LIKE :username and password LIKE :password", User.class);
+        String queryStr = "SELECT * FROM linksports.user WHERE username LIKE :username and password LIKE :password";
+        Query query = em.createNativeQuery(queryStr, User.class);
         query.setParameter("username", user.getUsername());
         query.setParameter("password", user.getPassword());
-        return query.getSingleResult() != null;
+        return query.getResultList().size() == 1;
+    }
+
+    @Override
+    public boolean existsByUsername(String username) {
+        String queryStr = "SELECT * FROM linksports.user WHERE username LIKE :username";
+        Query query = em.createNativeQuery(queryStr, User.class);
+        query.setParameter("username", username);
+        return query.getResultList().size() == 1;
     }
 
     //Ejemplo
     @Override
     public List getFirstNamesLike(String firstName) {
-        Query query = entityManager.createNativeQuery("SELECT * FROM linksports.user as user" +
+        Query query = em.createNativeQuery("SELECT * FROM linksports.user as user" +
                 "WHERE user.firstname LIKE ?", User.class);
         query.setParameter(1, firstName + "%");
         return query.getResultList();
