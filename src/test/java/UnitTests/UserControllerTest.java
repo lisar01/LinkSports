@@ -21,12 +21,15 @@ public class UserControllerTest {
 
     @Test
     public void test_add_user_and_check_if_it_has_been_saved() {
-        HttpEntity<User> request = new HttpEntity<>(new User("test", "test"));
-        User user = restTemplate.postForObject(url, request, User.class);
+        User user = new User();
+        user.setUsername("test"); user.setPassword("test");
+        HttpEntity<User> request = new HttpEntity<>(user);
+        //Http request
+        User result = restTemplate.postForObject(url, request, User.class);
 
-        Assert.assertThat(user, notNullValue());
+        Assert.assertThat(result, notNullValue());
         Assert.assertTrue(user.getId() > 0);
-        Assert.assertThat(user.getUsername(), is("test"));
-        Assert.assertThat(user.getPassword(), is("test"));
+        Assert.assertThat(result.getUsername(), is("test"));
+        Assert.assertThat(result.getPassword(), is("test"));
     }
 }
