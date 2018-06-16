@@ -26,10 +26,10 @@ public class UserController {
     public ResponseEntity signup(@RequestBody User user) {
         if(!userDAO.existsByUsername(user.getUsername())) {
             userDAO.save(user);
-            return ResponseEntity.ok().body(new ResponseModel("Registro exitoso!"));
+            return ResponseEntity.ok().build();
         }
         else {
-            return ResponseEntity.badRequest().body(new ResponseModel("El usuario ingresado ya se encuentra en uso."));
+            return ResponseEntity.badRequest().build();
         }
     }
 
@@ -49,7 +49,7 @@ public class UserController {
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ResponseEntity login(@RequestBody User user) {
         if(userDAO.checkLogin(user)) {
-            return ResponseEntity.ok().body(new ResponseModel("Login exitoso!"));
+            return ResponseEntity.ok().build();
         }
         else {
             return ResponseEntity.badRequest().body(new ResponseModel("Datos incorrectos."));

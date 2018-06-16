@@ -11,7 +11,6 @@ angular.module("LinkSports", [])
             data: {"username": $scope.username, "password": $scope.password}
         })
         .then(function(response) {
-            alert(JSON.stringify(response.data.body));
             window.location.href = "main.html";
         },
         function(error) {
