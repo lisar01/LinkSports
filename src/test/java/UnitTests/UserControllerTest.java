@@ -6,6 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpEntity;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 

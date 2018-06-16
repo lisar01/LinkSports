@@ -6,6 +6,7 @@ package Application.DAOs;
 import Application.Model.User;
 import org.springframework.data.repository.CrudRepository;
 
-public interface UserDAO extends CrudRepository<User, Long>, UserDAOCustom {
+import java.util.List;
 
+public interface UserDAO extends CrudRepository<User, Long>, UserDAOCustom {
 }

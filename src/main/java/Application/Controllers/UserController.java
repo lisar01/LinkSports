@@ -9,6 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/User") // This means URL's start with /Usuarios (after Application path)
@@ -56,5 +58,9 @@ public class UserController {
         }
     }
 
+    @GetMapping(value = "search")
+    public @ResponseBody List<User> searchByDeporte(@RequestParam String deporte) {
+        return userDAO.getByDeporte(deporte);
+    }
 
 }
