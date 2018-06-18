@@ -14,8 +14,8 @@ public class Logindef extends AbstractStepdefs {
 
     @Given("^An admin user saved in db")
     public void An_admin_user_saved_in_db() {
-        user.setUsername("admin");
-        user.setPassword("admin");
+        user.setUsername("admin1");
+        user.setPassword("admin1");
         HttpEntity<User> request = new HttpEntity<>(user);
         response = restTemplate.postForEntity(url + "User", request, String.class);
     }

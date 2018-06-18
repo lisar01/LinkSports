@@ -1,10 +1,10 @@
 package Application.DAOs.impl;
 
-import Application.DAOs.UserDAO;
 import Application.DAOs.UserDAOCustom;
 import Application.Model.User;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -41,4 +41,15 @@ public class UserDAOImpl implements UserDAOCustom {
         query.setParameter(1, firstName + "%");
         return query.getResultList();
     }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<User> getByDeporte(String deporte) {
+        String queryStr = "SELECT * FROM linksports.user WHERE deporte LIKE :deporte";
+        Query query = em.createNativeQuery(queryStr, User.class);
+        query.setParameter("deporte", deporte);
+        return (List<User>) query.getResultList();
+    }
+
+
 }
