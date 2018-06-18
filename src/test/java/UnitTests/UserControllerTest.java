@@ -35,4 +35,5 @@ public class UserControllerTest {
         Assert.assertThat(result.getUsername(), is("test"));
         Assert.assertThat(result.getPassword(), is("test"));
     }
+
 }
