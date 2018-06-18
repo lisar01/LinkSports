@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/lisar01/LinkSports.svg?branch=master)](https://travis-ci.org/lisar01/LinkSports.svg?branch=master)
+[![Travis](https://travis-ci.org/lisar01/LinkSports.svg?branch=master)](https://travis-ci.org/lisar01/LinkSports?branch=master)
 
 
 # LinkSports
