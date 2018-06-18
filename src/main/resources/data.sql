@@ -1,8 +1,8 @@
 INSERT INTO user
 (id, username, password, nombre, apellido, deporte, tipo)
 VALUES
-  (1,'undeportista1', '123456', 'nombredeportista1', 'apellidodeportista1', 'Football', 'Atleta'),
-  (2,'undeportista2', '123456', 'nombredeportista2', 'apellidodeportista2', 'Tenis', 'Atleta'),
+  (10,'undeportista1', '123456', 'nombredeportista1', 'apellidodeportista1', 'Football', 'Atleta'),
+  (11,'undeportista2', '123456', 'nombredeportista2', 'apellidodeportista2', 'Tenis', 'Atleta'),
   (3, 'undeportista3', 'qwerty', 'nombredeportista3', 'apellidodeportista3', 'Football', 'Atleta'),
   (4, 'undeportista4', 'qwerty', 'nombredeportista4', 'apellidodeportista4', 'Tenis', 'Atleta'),
   (5, 'undeportista5', '7890', 'nombredeportista5', 'apellidodeportista5', 'Basketball', 'Atleta'),
