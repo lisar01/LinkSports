@@ -1,7 +1,7 @@
 
-angular.module("LinkSportsApp", [])
-
+angular.module("LinkSportsApp", ["ui-router"])
     .service('UserService', UserService)
     .controller('UserController', UserController)
-    .controller('SearchController', SearchController);
+    .controller('SearchController', SearchController)
 
+.config(routes);

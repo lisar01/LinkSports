@@ -1,8 +1,3 @@
-angular.module("LinkSports", [])
-
-.controller("SearchController", SearchController);
-
-
 class SearchController {
 
     constructor(UserService) {
