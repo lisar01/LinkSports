@@ -1,0 +1,81 @@
+<div ng-controller="UserController">
+<nav class="navbar navbar-dark bg-dark">
+    <div class="col-md-5" style="padding-left: 20%">
+        <a class="navbar-brand" href="#">
+            <img src="../imagenes/linksports-logo.png" height="35">
+        </a>
+    </div>
+    <form ng-submit="login()" class="col-md-7">
+        <div class="form-row">
+            <div class="col-md-4">
+                <input type="text" ng-model="username" class="form-control" placeholder="Usuario" required>
+            </div>
+            <div class="col-md-4">
+                <input type="password" ng-model="password" class="form-control" placeholder="Contraseña" required>
+            </div>
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+            </div>
+        </div>
+    </form>
+</nav>
+<form ng-submit="signup()" id="signup_form">
+    <div id="signup_container" class="container">
+        <h2>Regístrate</h2><br>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="username_signup">Usuario</label>
+                <input type="text" ng-model="username_signup" class="form-control" id="username_signup" placeholder="Ingrese usuario" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="password_signup">Contraseña</label>
+                <input type="password" ng-model="password_signup" class="form-control" id="password_signup" placeholder="Ingrese contraseña" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="nombre">Nombre</label>
+                <input type="text" ng-model="nombre" class="form-control" id="nombre" placeholder="Ingrese Nombre" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="apellido">Apellido</label>
+                <input type="text" ng-model="apellido" class="form-control" id="apellido" placeholder="Ingrese Apellido" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="deporte">Deporte/Disciplina</label>
+                <select id="deporte" class="form-control"
+                        ng-model="deporte"
+                        ng-options="deporte for deporte in deportes">
+                    <option ng-selected="true" value="">Seleccione un deporte</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                           value="coach" ng-model="tipo" ng-required="true">
+                    <label class="form-check-label" for="inlineRadio1">Coach</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                           value="atleta" ng-model="tipo" ng-required="true">
+                    <label class="form-check-label" for="inlineRadio2">Atleta</label>
+                </div>
+            </div>
+        </div>
+        <div id="success_signup" class="alert alert-success hidden" role="alert">
+            <strong>Registro exitoso!</strong> Ya podes ingresar al sistema con tu usuario y contraseña.
+        </div>
+        <div id="error_signup" class="alert alert-danger hidden" role="alert">
+            <strong>Error:</strong> El usuario ingresado ya se encuentra en uso.
+        </div>
+        <div class="form-row col-md-12">
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Registrarme</button>
+        </div>
+    </div>
+</form><br>
+
+</div>
