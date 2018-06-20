@@ -1,0 +1,24 @@
+{
+  "name": "web-app",
+  "version": "1.0.0",
+  "description": "tp de la materia Elementos de Ingenieria en Software",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "http-server  -p 8000 -c-1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "angular",
+    "ui"
+  ],
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "angular": "^1.7.1",
+    "angular-ui-router": "^1.0.18",
+    "bootstrap": "^4.1.1",
+    "http-server": "^0.11.1",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.3"
+  }
+}
