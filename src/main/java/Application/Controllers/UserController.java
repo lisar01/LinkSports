@@ -9,6 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/User") // This means URL's start with /Usuarios (after Application path)
@@ -26,10 +28,10 @@ public class UserController {
     public ResponseEntity signup(@RequestBody User user) {
         if(!userDAO.existsByUsername(user.getUsername())) {
             userDAO.save(user);
-            return ResponseEntity.ok().body(new ResponseModel("Registro exitoso!"));
+            return ResponseEntity.ok().build();
         }
         else {
-            return ResponseEntity.badRequest().body(new ResponseModel("El usuario ingresado ya se encuentra en uso."));
+            return ResponseEntity.badRequest().build();
         }
     }
 
@@ -49,12 +51,16 @@ public class UserController {
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ResponseEntity login(@RequestBody User user) {
         if(userDAO.checkLogin(user)) {
-            return ResponseEntity.ok().body(new ResponseModel("Login exitoso!"));
+            return ResponseEntity.ok().build();
         }
         else {
             return ResponseEntity.badRequest().body(new ResponseModel("Datos incorrectos."));
         }
     }
 
+    @GetMapping(value = "search")
+    public @ResponseBody List<User> searchByDeporte(@RequestParam String deporte) {
+        return userDAO.getByDeporte(deporte);
+    }
 
 }

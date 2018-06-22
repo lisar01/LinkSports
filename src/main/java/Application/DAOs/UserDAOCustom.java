@@ -9,4 +9,5 @@ public interface UserDAOCustom {
     boolean checkLogin(User user);
     boolean existsByUsername(String username);
     List getFirstNamesLike(String firstName);
+    List<User> getByDeporte(String deporte);
 }
