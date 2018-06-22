@@ -29,4 +29,12 @@ class UserService {
         return this.http.get(this.baseurl + '/search', {'deporte': deporte});
     }
 
+    addContact(addContactInfo) {
+        return this.http({
+            method: "POST",
+            url: this.baseurl,
+            data: addContactInfo
+        })
+    }
+
 }

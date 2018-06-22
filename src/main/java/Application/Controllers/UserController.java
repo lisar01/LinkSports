@@ -51,7 +51,7 @@ public class UserController {
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ResponseEntity login(@RequestBody User user) {
         if(userDAO.checkLogin(user)) {
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok().body();
         }
         else {
             return ResponseEntity.badRequest().body(new ResponseModel("Datos incorrectos."));
@@ -62,5 +62,8 @@ public class UserController {
     public @ResponseBody List<User> searchByDeporte(@RequestParam String deporte) {
         return userDAO.getByDeporte(deporte);
     }
+
+    @PostMapping(value = "addContact")
+    public ResponseEntity addContact()
 
 }

@@ -17,7 +17,7 @@ public class User {
     private String deporte;
     private String tipo;
     @OneToMany
-    private List<User> contactos = new ArrayList<>();
+    private List<long> contactos = new ArrayList<>();
     //private List<Message> mensajes = new ArrayList<>();
 
     public User() {}

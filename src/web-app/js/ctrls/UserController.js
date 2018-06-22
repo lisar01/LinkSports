@@ -1,10 +1,12 @@
 function UserController($scope, $state, UserService) {
     $scope.deportes = ["Football", "Basketball", "Rugby", "Tenis", "Volley", "Jockey", "Handball"];
+    $scope.currentUserId = null;
 
     $scope.login = function () {
         const logininfo = {"username": $scope.username, "password": $scope.password};
         UserService.login(logininfo)
         .then(function (response) {
+            $scope.currentUser = $scope.username;
             $state.go('mainPage');
         },
         function (error) {
@@ -34,6 +36,13 @@ function UserController($scope, $state, UserService) {
     }
 
     $scope.addContact = function(contact) {
-        
+        const addContactInfo = {"sender": $scope.currentUser, "receiver": contact};
+        UserService.addContact(addContactInfo)
+        .then(function(response) {
+            alert("Se agrego el contacto a tu lista.");
+        },
+        function (error) {
+            alert(JSON.stringify(error.data.body));
+        });
     }
 }
