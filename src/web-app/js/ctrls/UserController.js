@@ -4,13 +4,12 @@ function UserController($scope, $state, UserService) {
     $scope.login = function () {
         const logininfo = {"username": $scope.username, "password": $scope.password};
         UserService.login(logininfo)
-            .then(function (response) {
-                    alert(JSON.stringify(response.data.body));
-                    $state.go('mainPage');
-                },
-                function (error) {
-                    alert(JSON.stringify(error.data.body));
-                })
+        .then(function (response) {
+            $state.go('mainPage');
+        },
+        function (error) {
+            alert(JSON.stringify(error.data.body));
+        })
     };
 
     $scope.signup = function () {
@@ -25,13 +24,16 @@ function UserController($scope, $state, UserService) {
             "tipo": $scope.tipo,
             "genero": $scope.genero
         };
-
         UserService.signup(user)
-            .then(function (response) {
-                    $('#success_signup').show();
-                },
-                function (error) {
-                    $('#error_signup').show();
-                })
+        .then(function (response) {
+            $('#success_signup').show();
+        },
+        function (error) {
+            $('#error_signup').show();
+        })
+    }
+
+    $scope.addContact = function(contact) {
+        
     }
 }

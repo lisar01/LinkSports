@@ -16,8 +16,9 @@ public class User {
     private String apellido;
     private String deporte;
     private String tipo;
-    /*private List<User> contactos = new ArrayList<>();
-    private List<Message> mensajes = new ArrayList<>();*/
+    @OneToMany
+    private List<User> contactos = new ArrayList<>();
+    //private List<Message> mensajes = new ArrayList<>();
 
     public User() {}
 
