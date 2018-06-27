@@ -26,7 +26,7 @@ class UserService {
     }
 
     search(deporte) {
-        return this.http.get(this.baseurl + '/search', {'deporte': deporte});
+        return this.http.get(this.baseurl + "/search?deporte=" + deporte);
     }
 
 }
