@@ -3,6 +3,7 @@ class UserService {
     constructor($http) {
         this.http = $http;
         this.baseurl = "http://localhost:8080/User";
+        this.userLoggeado = undefined;
     }
 
     login(logininfo) {

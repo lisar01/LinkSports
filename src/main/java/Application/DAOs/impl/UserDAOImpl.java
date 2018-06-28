@@ -18,11 +18,7 @@ public class UserDAOImpl implements UserDAOCustom {
 
     @Override
     public boolean checkLogin(User user) {
-        String queryStr = "SELECT * FROM linksports.user WHERE username LIKE :username and password LIKE :password";
-        Query query = em.createNativeQuery(queryStr, User.class);
-        query.setParameter("username", user.getUsername());
-        query.setParameter("password", user.getPassword());
-        return query.getResultList().size() == 1;
+        return this.get(user) != null;
     }
 
     @Override
@@ -33,15 +29,6 @@ public class UserDAOImpl implements UserDAOCustom {
         return query.getResultList().size() == 1;
     }
 
-    //Ejemplo
-    @Override
-    public List getFirstNamesLike(String firstName) {
-        Query query = em.createNativeQuery("SELECT * FROM linksports.user as user" +
-                "WHERE user.firstname LIKE ?", User.class);
-        query.setParameter(1, firstName + "%");
-        return query.getResultList();
-    }
-
     @Override
     @SuppressWarnings("unchecked")
     public List<User> getByDeporte(String deporte) {
@@ -49,6 +36,20 @@ public class UserDAOImpl implements UserDAOCustom {
         Query query = em.createNativeQuery(queryStr, User.class);
         query.setParameter("deporte", deporte);
         return (List<User>) query.getResultList();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public User get(User user) {
+        String queryStr = "SELECT * FROM linksports.user WHERE username LIKE :username and password LIKE :password";
+        Query query = em.createNativeQuery(queryStr, User.class);
+        query.setParameter("username", user.getUsername());
+        query.setParameter("password", user.getPassword());
+
+        List<User> userPosible = query.getResultList();
+
+        if (userPosible.isEmpty()) return null;
+        else return userPosible.get(0);
     }
 
 
