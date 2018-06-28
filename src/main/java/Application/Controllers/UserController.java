@@ -2,6 +2,7 @@ package Application.Controllers;
 
 import Application.Controllers.ResponseModel.ResponseModel;
 import Application.DAOs.UserDAO;
+import Application.Exceptions.DatosIncorrectosException;
 import Application.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,21 +42,18 @@ public class UserController {
         return ResponseEntity.ok().body(new ResponseModel("Usuario eliminado."));
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public User updateUser(@RequestBody User user) {
-        //El metodo save en una entidad con un ID ya existente, funciona como un update
-        userDAO.save(user);
-        return userDAO.findById(user.getId()).get();
+    @PutMapping(value = "update")
+    public @ResponseBody User updateUser(@RequestBody User user) {
+        return userDAO.save(user);
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.POST)
-    public ResponseEntity login(@RequestBody User user) {
-        if(userDAO.checkLogin(user)) {
-            return ResponseEntity.ok().build();
-        }
-        else {
-            return ResponseEntity.badRequest().body(new ResponseModel("Datos incorrectos."));
-        }
+    @PostMapping(value = "login")
+    public @ResponseBody User login(@RequestBody User user) {
+        User aLogearse = userDAO.get(user);
+
+        if(aLogearse == null) throw new DatosIncorrectosException();
+
+        return aLogearse;
     }
 
     @GetMapping(value = "search")

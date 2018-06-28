@@ -5,7 +5,7 @@ function UserController($scope, $state, UserService) {
         const logininfo = {"username": $scope.username, "password": $scope.password};
         UserService.login(logininfo)
             .then(function (response) {
-                    alert(JSON.stringify(response.data.body));
+                    UserService.userLoggeado = response.data;
                     $state.go('mainPage');
                 },
                 function (error) {

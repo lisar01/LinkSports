@@ -30,6 +30,11 @@ public class User {
         this.tipo = tipo;
     }
 
+
+
+    public void setDeporte(String deporte) {
+        this.deporte = deporte;
+    }
     public long getId() {
         return this.id;
     }
@@ -47,4 +52,5 @@ public class User {
         return deporte;
     }
     public String getTipo() { return tipo; }
+
 }
