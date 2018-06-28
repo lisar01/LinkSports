@@ -10,4 +10,5 @@ public interface UserDAOCustom {
     boolean existsByUsername(String username);
     List<User> getByDeporte(String deporte);
     User get(User user);
+    void update(User user);
 }

@@ -43,8 +43,9 @@ public class UserController {
     }
 
     @PutMapping(value = "update")
-    public @ResponseBody User updateUser(@RequestBody User user) {
-        return userDAO.save(user);
+    @ResponseStatus(value = HttpStatus.OK)
+    public void updateUser(@RequestBody User user) {
+        userDAO.update(user);
     }
 
     @PostMapping(value = "login")

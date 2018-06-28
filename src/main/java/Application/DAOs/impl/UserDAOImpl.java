@@ -2,9 +2,7 @@ package Application.DAOs.impl;
 
 import Application.DAOs.UserDAOCustom;
 import Application.Model.User;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
-import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -50,6 +48,29 @@ public class UserDAOImpl implements UserDAOCustom {
 
         if (userPosible.isEmpty()) return null;
         else return userPosible.get(0);
+    }
+
+    @Override
+    @Transactional
+    public void update(User user) {
+        String queryStr = "UPDATE user SET " +
+                "password= :password, " +
+                "nombre= :nombre, " +
+                "apellido = :apellido, " +
+                "deporte= :deporte, " +
+                "tipo=:tipo " +
+                "WHERE username = :username";
+
+        Query query = em.createNativeQuery(queryStr);
+
+        query.setParameter("password", user.getPassword());
+        query.setParameter("nombre", user.getNombre());
+        query.setParameter("apellido",user.getApellido());
+        query.setParameter("deporte", user.getDeporte());
+        query.setParameter("tipo", user.getTipo());
+        query.setParameter("username", user.getUsername());
+
+        query.executeUpdate();
     }
 
 

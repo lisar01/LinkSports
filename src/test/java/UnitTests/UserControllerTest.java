@@ -31,7 +31,6 @@ public class UserControllerTest {
         User result = restTemplate.postForObject(url, request, User.class);
 
         Assert.assertThat(result, notNullValue());
-        Assert.assertTrue(user.getId() > 0);
         Assert.assertThat(result.getUsername(), is("test"));
         Assert.assertThat(result.getPassword(), is("test"));
     }
