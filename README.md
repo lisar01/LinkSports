@@ -13,4 +13,6 @@ Cada usuario, indiferente de su cargo, puede tener un registro de acontecimiento
 
 - Sprints, retrospectivas y spikes: https://docs.google.com/document/d/1cZ7DZrLJ1BQY4asTb-PnyfpkCtAEKxruIfOgEIODjds/edit?usp=sharing
 
+- Casos de uso: https://realtimeboard.com/app/board/o9J_kzFGalI=/
+
 - Tablero de trello de tareas pendientes y realizadas: https://trello.com/b/O2TKG3O9/tp-link-sports
