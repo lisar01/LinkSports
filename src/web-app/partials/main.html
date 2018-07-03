@@ -9,7 +9,7 @@
     <form ng-submit="buscador.search()" class="col-md-3">
         <div class="form-row">
             <div class="col input-group">
-                <input type="text" class="form-control" placeholder="Deporte" aria-describedby="basic-addon2">
+                <input type="text" class="form-control" ng-model="buscador.deporte" placeholder="Deporte" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="button">Buscar</button>
                 </div>

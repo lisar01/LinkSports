@@ -2,6 +2,7 @@ package Application.DAOs.impl;
 
 import Application.DAOs.UserDAOCustom;
 import Application.Model.User;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,11 +16,7 @@ public class UserDAOImpl implements UserDAOCustom {
 
     @Override
     public boolean checkLogin(User user) {
-        String queryStr = "SELECT * FROM linksports.user WHERE username LIKE :username and password LIKE :password";
-        Query query = em.createNativeQuery(queryStr, User.class);
-        query.setParameter("username", user.getUsername());
-        query.setParameter("password", user.getPassword());
-        return query.getResultList().size() == 1;
+        return this.get(user) != null;
     }
 
     @Override
@@ -33,15 +30,6 @@ public class UserDAOImpl implements UserDAOCustom {
         catch (Exception ex) { return null; }
     }
 
-    //Ejemplo
-    @Override
-    public List getFirstNamesLike(String firstName) {
-        Query query = em.createNativeQuery("SELECT * FROM linksports.user as user" +
-                "WHERE user.firstname LIKE ?", User.class);
-        query.setParameter(1, firstName + "%");
-        return query.getResultList();
-    }
-
     @Override
     @SuppressWarnings("unchecked")
     public List<User> getByDeporte(String deporte) {
@@ -49,6 +37,43 @@ public class UserDAOImpl implements UserDAOCustom {
         Query query = em.createNativeQuery(queryStr, User.class);
         query.setParameter("deporte", deporte);
         return (List<User>) query.getResultList();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public User get(User user) {
+        String queryStr = "SELECT * FROM linksports.user WHERE username LIKE :username and password LIKE :password";
+        Query query = em.createNativeQuery(queryStr, User.class);
+        query.setParameter("username", user.getUsername());
+        query.setParameter("password", user.getPassword());
+
+        List<User> userPosible = query.getResultList();
+
+        if (userPosible.isEmpty()) return null;
+        else return userPosible.get(0);
+    }
+
+    @Override
+    @Transactional
+    public void update(User user) {
+        String queryStr = "UPDATE user SET " +
+                "password= :password, " +
+                "nombre= :nombre, " +
+                "apellido = :apellido, " +
+                "deporte= :deporte, " +
+                "tipo=:tipo " +
+                "WHERE username = :username";
+
+        Query query = em.createNativeQuery(queryStr);
+
+        query.setParameter("password", user.getPassword());
+        query.setParameter("nombre", user.getNombre());
+        query.setParameter("apellido",user.getApellido());
+        query.setParameter("deporte", user.getDeporte());
+        query.setParameter("tipo", user.getTipo());
+        query.setParameter("username", user.getUsername());
+
+        query.executeUpdate();
     }
 
 

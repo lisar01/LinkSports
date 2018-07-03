@@ -3,6 +3,7 @@ package Application.Controllers;
 import Application.Controllers.DTOs.FollowDTO;
 import Application.Controllers.DTOs.ResponseModel;
 import Application.DAOs.UserDAO;
+import Application.Exceptions.DatosIncorrectosException;
 import Application.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,24 +42,20 @@ public class UserController {
         return ResponseEntity.ok().body(new ResponseModel("Usuario eliminado."));
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public User updateUser(@RequestBody User user) {
-        //El metodo save en una entidad con un ID ya existente, funciona como un update
-        userDAO.save(user);
-        return userDAO.getByUsername(user.getUsername());
+   @PutMapping(value = "update")
+    @ResponseStatus(value = HttpStatus.OK)
+    public void updateUser(@RequestBody User user) {
+        userDAO.update(user);
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.POST)
-    public ResponseEntity login(@RequestBody User userReq) {
-        User userPersisted = userDAO.getByUsername(userReq.getUsername());
+    @PostMapping(value = "login")
+    public @ResponseBody User login(@RequestBody User user) {
+        User aLogearse = userDAO.get(user);
 
-        if(userPersisted != null && userPersisted.getPassword().equals(userReq.getPassword())) {
-            return ResponseEntity.ok().body(userPersisted);
-        }
-        else {
-            return ResponseEntity.badRequest().body(new ResponseModel("Datos incorrectos."));
-        }
-    }
+        if(aLogearse == null) throw new DatosIncorrectosException();
+
+        return aLogearse;
+ }
 
     @GetMapping(value = "search")
     public @ResponseBody List<User> searchByDeporte(@RequestParam String deporte) {

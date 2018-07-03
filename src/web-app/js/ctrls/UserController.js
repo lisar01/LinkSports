@@ -1,17 +1,16 @@
 function UserController($scope, $state, UserService) {
     $scope.deportes = ["Football", "Basketball", "Rugby", "Tenis", "Volley", "Jockey", "Handball"];
-    $scope.username = sessionStorage.getItem("username");
 
     $scope.login = function () {
         const logininfo = {"username": $scope.username, "password": $scope.password};
         UserService.login(logininfo)
-        .then(function (response) {
-            sessionStorage.setItem("username", response.data.username);
-            $state.go('mainPage');
-        },
-        function (error) {
-            alert(JSON.stringify(error.data.body));
-        })
+          .then(function (response) {
+                    UserService.userLoggeado = response.data;
+                    $state.go('mainPage');
+                },
+                function (error) {
+                    alert(JSON.stringify(error.data.body));
+                })
     };
 
     $scope.signup = function () {
