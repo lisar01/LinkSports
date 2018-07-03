@@ -2,9 +2,6 @@ package Application.DAOs.impl;
 
 import Application.DAOs.UserDAOCustom;
 import Application.Model.User;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
-import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,11 +23,14 @@ public class UserDAOImpl implements UserDAOCustom {
     }
 
     @Override
-    public boolean existsByUsername(String username) {
+    public User getByUsername(String username) {
         String queryStr = "SELECT * FROM linksports.user WHERE username LIKE :username";
         Query query = em.createNativeQuery(queryStr, User.class);
         query.setParameter("username", username);
-        return query.getResultList().size() == 1;
+        try {
+            return (User) query.getSingleResult();
+        }
+        catch (Exception ex) { return null; }
     }
 
     //Ejemplo

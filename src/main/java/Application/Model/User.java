@@ -1,5 +1,10 @@
 package Application.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +12,6 @@ import java.util.List;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
     @Column(nullable = false)
     private String username;
     private String password;
@@ -16,9 +19,18 @@ public class User {
     private String apellido;
     private String deporte;
     private String tipo;
-    @OneToMany
-    private List<long> contactos = new ArrayList<>();
-    //private List<Message> mensajes = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_follower",
+            joinColumns = {@JoinColumn(name="user")},
+            inverseJoinColumns={@JoinColumn(name="follower")}
+    )
+    @JsonIgnoreProperties("following")
+    private List<User> followers = new ArrayList<>();
+
+    @ManyToMany(mappedBy="followers", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("followers")
+    private List<User> following = new ArrayList<>();
 
     public User() {}
 
@@ -31,9 +43,6 @@ public class User {
         this.tipo = tipo;
     }
 
-    public long getId() {
-        return this.id;
-    }
     public String getUsername() {
         return username;
     }
@@ -48,4 +57,8 @@ public class User {
         return deporte;
     }
     public String getTipo() { return tipo; }
+    public List<User> getFollowers() { return followers; }
+    public List<User> getFollowing() { return following; }
+
+    public void addFollower(User user) { followers.add(user); }
 }

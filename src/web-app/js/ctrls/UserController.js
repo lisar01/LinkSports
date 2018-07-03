@@ -1,12 +1,12 @@
 function UserController($scope, $state, UserService) {
     $scope.deportes = ["Football", "Basketball", "Rugby", "Tenis", "Volley", "Jockey", "Handball"];
-    $scope.currentUserId = null;
+    $scope.username = sessionStorage.getItem("username");
 
     $scope.login = function () {
         const logininfo = {"username": $scope.username, "password": $scope.password};
         UserService.login(logininfo)
         .then(function (response) {
-            $scope.currentUser = $scope.username;
+            sessionStorage.setItem("username", response.data.username);
             $state.go('mainPage');
         },
         function (error) {
@@ -35,14 +35,21 @@ function UserController($scope, $state, UserService) {
         })
     }
 
-    $scope.addContact = function(contact) {
-        const addContactInfo = {"sender": $scope.currentUser, "receiver": contact};
-        UserService.addContact(addContactInfo)
+    $scope.follow = function(userToFollow) {
+        const followData = {"loggedUsername": $scope.username, "toFollow": userToFollow};
+        UserService.follow(followData)
         .then(function(response) {
-            alert("Se agrego el contacto a tu lista.");
+            $state.reload();
         },
         function (error) {
             alert(JSON.stringify(error.data.body));
         });
+    }
+
+    $scope.isFollowing = function(user) {
+        for(let i=0; i < user.followers.length; i++) {
+            if(user.followers[i].username == $scope.username) return true;
+        }
+        return false;
     }
 }

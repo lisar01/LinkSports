@@ -1,12 +1,12 @@
 package Application.Controllers;
 
-import Application.Controllers.ResponseModel.ResponseModel;
+import Application.Controllers.DTOs.FollowDTO;
+import Application.Controllers.DTOs.ResponseModel;
 import Application.DAOs.UserDAO;
 import Application.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,15 +20,15 @@ public class UserController {
     private UserDAO userDAO;
 
     @RequestMapping(method = RequestMethod.GET)
-    public Iterable<User> getUsers() {
+    public Iterable<User> getAll() {
         return userDAO.findAll();
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity signup(@RequestBody User user) {
-        if(!userDAO.existsByUsername(user.getUsername())) {
-            userDAO.save(user);
-            return ResponseEntity.ok().build();
+    public ResponseEntity signup(@RequestBody User userReq) {
+        if(userDAO.getByUsername(userReq.getUsername()) == null) {
+            userDAO.save(userReq);
+            return ResponseEntity.ok().body(userDAO.getByUsername(userReq.getUsername()));
         }
         else {
             return ResponseEntity.badRequest().build();
@@ -45,13 +45,15 @@ public class UserController {
     public User updateUser(@RequestBody User user) {
         //El metodo save en una entidad con un ID ya existente, funciona como un update
         userDAO.save(user);
-        return userDAO.findById(user.getId()).get();
+        return userDAO.getByUsername(user.getUsername());
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public ResponseEntity login(@RequestBody User user) {
-        if(userDAO.checkLogin(user)) {
-            return ResponseEntity.ok().body();
+    public ResponseEntity login(@RequestBody User userReq) {
+        User userPersisted = userDAO.getByUsername(userReq.getUsername());
+
+        if(userPersisted != null && userPersisted.getPassword().equals(userReq.getPassword())) {
+            return ResponseEntity.ok().body(userPersisted);
         }
         else {
             return ResponseEntity.badRequest().body(new ResponseModel("Datos incorrectos."));
@@ -63,7 +65,14 @@ public class UserController {
         return userDAO.getByDeporte(deporte);
     }
 
-    /*@PostMapping(value = "addContact")
-    public ResponseEntity addContact()*/
+    @Transactional
+    @RequestMapping(value = "follow", method = RequestMethod.POST)
+    public ResponseEntity follow(@RequestBody FollowDTO followDTO) {
+        User userToFollow = followDTO.toFollow;
+        userToFollow.addFollower(userDAO.getByUsername(followDTO.loggedUsername));
+        userDAO.save(userToFollow);
+
+        return ResponseEntity.ok().build();
+    }
 
 }

@@ -30,8 +30,9 @@
                     <p class="card-text">{{user.tipo}}</p>
                     <p class="card-text">Deporte: {{user.deporte}}</p>
                 </div>
-                <div class="card-footer">
-                    <button type="button" onclick="addContact(user)" class="btn btn-success">Agregar contacto</button>
+                <div ng-controller="UserController" class="card-footer">
+                    <button ng-if="isFollowing(user) == false" type="button" ng-click="follow(user)" class="btn btn-success">Seguir</button>
+                    <button ng-if="isFollowing(user) == true" type="button" class="btn btn-success disabled">Siguiendo</button>
                 </div>
             </div><br>
         </div>

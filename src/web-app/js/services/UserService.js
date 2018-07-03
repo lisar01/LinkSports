@@ -29,11 +29,11 @@ class UserService {
         return this.http.get(this.baseurl + '/search', {'deporte': deporte});
     }
 
-    addContact(addContactInfo) {
+    follow(followData) {
         return this.http({
             method: "POST",
-            url: this.baseurl,
-            data: addContactInfo
+            url: this.baseurl + "/follow",
+            data: followData
         })
     }
 
