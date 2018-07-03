@@ -1,5 +1,5 @@
 function UserController($scope, $state, UserService) {
-    $scope.deportes = ["Football", "Basketball", "Rugby", "Tenis", "Volley", "Jockey", "Handball"];
+    $scope.deportes = ["Football", "Basketball", "Rugby", "Tenis", "Volleyball", "Jockey", "Handball"];
 
     $scope.login = function () {
         const logininfo = {"username": $scope.username, "password": $scope.password};
