@@ -27,10 +27,12 @@
                 <img class="card-img-top" src="../imagenes/profile.png" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">{{user.nombre}} {{user.apellido}}</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text">{{user.tipo}}</p>
+                    <p class="card-text">Deporte: {{user.deporte}}</p>
                 </div>
-                <div class="card-footer">
-                    <button type="button" class="btn btn-success">Agregar contacto</button>
+                <div ng-controller="UserController" class="card-footer">
+                    <button ng-if="isFollowing(user) == false" type="button" ng-click="follow(user)" class="btn btn-success">Seguir</button>
+                    <button ng-if="isFollowing(user) == true" type="button" class="btn btn-success disabled">Siguiendo</button>
                 </div>
             </div><br>
         </div>

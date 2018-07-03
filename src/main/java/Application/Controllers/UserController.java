@@ -1,13 +1,13 @@
 package Application.Controllers;
 
-import Application.Controllers.ResponseModel.ResponseModel;
+import Application.Controllers.DTOs.FollowDTO;
+import Application.Controllers.DTOs.ResponseModel;
 import Application.DAOs.UserDAO;
 import Application.Exceptions.DatosIncorrectosException;
 import Application.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,15 +21,15 @@ public class UserController {
     private UserDAO userDAO;
 
     @RequestMapping(method = RequestMethod.GET)
-    public Iterable<User> getUsers() {
+    public Iterable<User> getAll() {
         return userDAO.findAll();
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity signup(@RequestBody User user) {
-        if(!userDAO.existsByUsername(user.getUsername())) {
-            userDAO.save(user);
-            return ResponseEntity.ok().build();
+    public ResponseEntity signup(@RequestBody User userReq) {
+        if(userDAO.getByUsername(userReq.getUsername()) == null) {
+            userDAO.save(userReq);
+            return ResponseEntity.ok().body(userDAO.getByUsername(userReq.getUsername()));
         }
         else {
             return ResponseEntity.badRequest().build();
@@ -42,7 +42,7 @@ public class UserController {
         return ResponseEntity.ok().body(new ResponseModel("Usuario eliminado."));
     }
 
-    @PutMapping(value = "update")
+   @PutMapping(value = "update")
     @ResponseStatus(value = HttpStatus.OK)
     public void updateUser(@RequestBody User user) {
         userDAO.update(user);
@@ -55,11 +55,21 @@ public class UserController {
         if(aLogearse == null) throw new DatosIncorrectosException();
 
         return aLogearse;
-    }
+ }
 
     @GetMapping(value = "search")
     public @ResponseBody List<User> searchByDeporte(@RequestParam String deporte) {
         return userDAO.getByDeporte(deporte);
+    }
+
+    @Transactional
+    @RequestMapping(value = "follow", method = RequestMethod.POST)
+    public ResponseEntity follow(@RequestBody FollowDTO followDTO) {
+        User userToFollow = followDTO.toFollow;
+        userToFollow.addFollower(userDAO.getByUsername(followDTO.loggedUsername));
+        userDAO.save(userToFollow);
+
+        return ResponseEntity.ok().build();
     }
 
 }
