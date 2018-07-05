@@ -1,12 +1,12 @@
 function UserController($scope, $state, UserService) {
-    $scope.deportes = ["Football", "Basketball", "Rugby", "Tenis", "Volley", "Jockey", "Handball"];
+    $scope.deportes = ["Football", "Basketball", "Rugby", "Tenis", "Volleyball", "Jockey", "Handball"];
     $scope.username = sessionStorage.getItem("username");
 
     $scope.login = function () {
         const logininfo = {"username": $scope.username, "password": $scope.password};
         UserService.login(logininfo)
         .then(function (response) {
-            sessionStorage.setItem("username", response.data.username);
+            UserService.userLoggeado = response.data;
             $state.go('mainPage');
         },
         function (error) {
@@ -36,7 +36,7 @@ function UserController($scope, $state, UserService) {
     }
 
     $scope.follow = function(userToFollow) {
-        const followData = {"loggedUsername": $scope.username, "toFollow": userToFollow};
+        const followData = {"loggedUsername": UserService.userLoggeado, "toFollow": userToFollow};
         UserService.follow(followData)
         .then(function(response) {
             $state.reload();

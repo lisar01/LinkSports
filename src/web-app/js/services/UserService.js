@@ -3,6 +3,7 @@ class UserService {
     constructor($http) {
         this.http = $http;
         this.baseurl = "http://localhost:8080/User";
+        this.userLoggeado = undefined;
     }
 
     login(logininfo) {
@@ -26,7 +27,7 @@ class UserService {
     }
 
     search(deporte) {
-        return this.http.get(this.baseurl + '/search', {'deporte': deporte});
+        return this.http.get(this.baseurl + "/search?deporte=" + deporte);
     }
 
     follow(followData) {
