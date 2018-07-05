@@ -33,6 +33,9 @@ public class User {
     @JsonIgnoreProperties("followers")
     private List<User> following = new ArrayList<>();
 
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+    private List<Publicacion> publicaciones = new ArrayList<>();
+
     public User() {}
 
     public User(String username, String password, String nombre, String apellido, String deporte, String tipo) {
@@ -94,4 +97,6 @@ public class User {
     public List<User> getFollowing() { return following; }
 
     public void addFollower(User user) { followers.add(user); }
+
+    public List<Publicacion> getPublicaciones() { return publicaciones; }
 }
