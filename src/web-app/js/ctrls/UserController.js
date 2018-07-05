@@ -1,6 +1,5 @@
 function UserController($scope, $state, UserService) {
     $scope.deportes = ["Football", "Basketball", "Rugby", "Tenis", "Volleyball", "Jockey", "Handball"];
-    $scope.username = sessionStorage.getItem("username");
 
     $scope.login = function () {
         const logininfo = {"username": $scope.username, "password": $scope.password};
@@ -36,7 +35,7 @@ function UserController($scope, $state, UserService) {
     }
 
     $scope.follow = function(userToFollow) {
-        const followData = {"loggedUsername": UserService.userLoggeado, "toFollow": userToFollow};
+        const followData = {"loggedUsername": UserService.userLoggeado.username, "toFollow": userToFollow};
         UserService.follow(followData)
         .then(function(response) {
             $state.reload();
@@ -48,7 +47,7 @@ function UserController($scope, $state, UserService) {
 
     $scope.isFollowing = function(user) {
         for(let i=0; i < user.followers.length; i++) {
-            if(user.followers[i].username == $scope.username) return true;
+            if(user.followers[i].username == UserService.userLoggeado) return true;
         }
         return false;
     }

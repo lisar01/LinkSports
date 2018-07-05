@@ -6,6 +6,7 @@ import Application.DAOs.UserDAO;
 import Application.Exceptions.DatosIncorrectosException;
 import Application.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -42,11 +43,10 @@ public class UserController {
         return ResponseEntity.ok().body(new ResponseModel("Usuario eliminado."));
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public User updateUser(@RequestBody User user) {
-        //El metodo save en una entidad con un ID ya existente, funciona como un update
-        userDAO.save(user);
-        return userDAO.getByUsername(user.getUsername());
+    @PutMapping(value = "update")
+    @ResponseStatus(value = HttpStatus.OK)
+    public void updateUser(@RequestBody User user) {
+        userDAO.update(user);
     }
 
     @PostMapping(value = "login")
