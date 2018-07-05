@@ -1,10 +1,15 @@
 package UnitTests;
 
+import Application.Controllers.DTOs.FollowDTO;
+import Application.DAOs.UserDAO;
 import Application.Model.User;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -15,6 +20,9 @@ import static org.hamcrest.core.IsNull.notNullValue;
 public class UserControllerTest {
     private RestTemplate restTemplate;
     private String url;
+    @Autowired
+    private UserDAO userDAO;
+    private ResponseEntity<String> response;
 
     @Before
     public void setUp() {

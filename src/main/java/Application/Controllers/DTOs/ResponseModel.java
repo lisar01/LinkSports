@@ -1,6 +1,4 @@
-package Application.Controllers.ResponseModel;
-
-import org.springframework.http.HttpStatus;
+package Application.Controllers.DTOs;
 
 public class ResponseModel {
     public String body;

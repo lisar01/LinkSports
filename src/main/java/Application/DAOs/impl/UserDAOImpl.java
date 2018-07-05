@@ -20,11 +20,14 @@ public class UserDAOImpl implements UserDAOCustom {
     }
 
     @Override
-    public boolean existsByUsername(String username) {
+    public User getByUsername(String username) {
         String queryStr = "SELECT * FROM linksports.user WHERE username LIKE :username";
         Query query = em.createNativeQuery(queryStr, User.class);
         query.setParameter("username", username);
-        return query.getResultList().size() == 1;
+        try {
+            return (User) query.getSingleResult();
+        }
+        catch (Exception ex) { return null; }
     }
 
     @Override
