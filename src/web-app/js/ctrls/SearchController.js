@@ -1,12 +1,10 @@
 class SearchController {
 
-    constructor(UserService) {
+    constructor(UserService, SportService, $state) {
         this.userService = UserService;
+        this.state = $state;
         this.resultados = undefined;
-        this.deportes = [
-            [ "Baseball", "Football", "Basket", "Rugby","Tenis"],
-            ["Volley", "Jockey", "Boxeo", "Golf", "None"]
-        ];
+        this.deportes = SportService.sportsToSearch();
         this.search("None")
     }
 
@@ -27,7 +25,11 @@ class SearchController {
     }
 
     hayResultados() {
-        return this.resultados.length
+        return ! (angular.isUndefined(this.resultados) || !this.resultados.length);
+    }
+
+    goToEditarPage() {
+        this.state.go("editarPage");
     }
 
 }
