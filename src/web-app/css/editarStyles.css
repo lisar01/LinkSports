@@ -6,19 +6,10 @@
 
 .lh-condensed { line-height: 1.25; }
 
-body {
-    background-color: #0E4749;
-}
-
-.container {
-    color: #EFE7DA;
-    background-color: #0E4749;
-}
-
-#update-c-btn {
+#left-side {
     background-color: #95C623 !important;
 }
 
-#update-p-btn {
+#right-side {
     background-color: #E55812 !important;
 }

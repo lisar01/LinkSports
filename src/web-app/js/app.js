@@ -4,5 +4,6 @@ angular.module('linkSportsApp', ['ui.router'])
     .controller('UserController', UserController)
     .controller('SearchController', SearchController)
     .controller('EditarController', EditarController)
+    .controller('HeaderController', HeaderController)
     .config(routes);
     

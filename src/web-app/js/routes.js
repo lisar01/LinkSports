@@ -10,12 +10,6 @@ const routes = function ($stateProvider, $urlRouterProvider) {
             controller: "UserController as UserCtrl"
         })
 
-        // .state('register', {
-        //     url: "/reg",
-        //     templateUrl: "../partials/registro.html",
-        //     controller: "UsuarioController as UserCtrl"
-        // })
-
         .state('mainPage', {
             url: "/main",
             templateUrl: "../partials/main.html",

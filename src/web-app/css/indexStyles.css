@@ -1,0 +1,36 @@
+.hidden {
+    display: none;
+}
+
+#pagecontent {
+    margin-top: 80px;
+    padding-bottom: 50px;
+}
+
+body {
+    background-color: #0E4749 !important;
+}
+
+.navbar {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-weight: 700;
+    color: #fff !important;
+    font-family: Montserrat, sans-serif;
+}
+
+.footer-navbar {
+    background-color: #002626 !important;
+}
+
+.left-side {
+    background-color: #95C623 !important;
+}
+
+.right-side {
+    background-color: #E55812 !important;
+}
+
+a:hover {
+    cursor: pointer;
+}

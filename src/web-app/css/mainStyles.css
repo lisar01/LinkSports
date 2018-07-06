@@ -1,0 +1,25 @@
+
+.padding-up {
+    padding-top: 30px;
+}
+
+#pagecontent {
+    padding-bottom: 50px;
+}
+
+.search-card, .card-img-top {
+    background-color: #E55812;
+}
+
+.side-card {
+    background-color: #95C623;
+}
+
+.search-result {
+    color:#07C;
+    cursor: pointer;
+}
+
+.search-result:hover {
+    text-decoration: underline;
+}

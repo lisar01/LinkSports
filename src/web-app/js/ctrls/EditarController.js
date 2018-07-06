@@ -33,11 +33,11 @@ class EditarController {
     editarPass() {
         if(this.esMismaContraseniaAntigua() && this.esMismaContraseniaNueva()) {
             this.userService.setPassword(this.passInfo.nueva);
-            this.userService.editar()
-                .then(response => {
+            // this.userService.editar()
+            //     .then(response => {
                     this.crearPassInfo();
                     this.mostrarAlerta("#new-password-success")
-                })
+            //     })
         }
         else {
             if(! this.esMismaContraseniaNueva()) {
@@ -60,11 +60,11 @@ class EditarController {
 
     editarPerfil() {
         this.mergeUser();
-        this.userService.editar()
-            .then(response => {
+        // this.userService.editar()
+        //     .then(response => {
                 this.crearPerfilNuevo();
                 this.mostrarAlerta("#new-profile-success")
-            })
+        //     })
     }
 
     mergeUser() {
@@ -75,7 +75,7 @@ class EditarController {
     }
 
     mostrarAlerta(alerta) {
-        $(alerta).fadeTo(2000, 500).slideUp(500, function(){
+        $(alerta).fadeTo(5000, 500).slideUp(500, function(){
             $(alerta).slideUp(500);
         });
     }

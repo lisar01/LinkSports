@@ -1,11 +1,10 @@
 <head>
-    <link href="/css/form-validation.css" rel="stylesheet">
-    <link href="/css/editar.css" rel="stylesheet">
+    <link href="/css/editarStyles.css" rel="stylesheet">
 </head>
 
-<div class="container m-5" ng-controller="EditarController as editor">
+<div class="text-white" ng-controller="EditarController as editor">
 
-    <div class="alert-on-top">
+    <div class="alert-on-top mb-4">
         <div id="old-password-error" class="alert alert-danger hidden" role="alert">
             La contraseña antigua no es correcta
         </div>
@@ -47,7 +46,7 @@
                            id="again_new_pass" required>
                 </div>
                 <hr class="mb-4">
-                <button class="btn btn-lg btn-block" id="update-c-btn" type="submit">Actualizar Contraseña</button>
+                <button class="btn btn-lg btn-block" id="left-side" type="submit">Actualizar Contraseña</button>
             </form>
         </div>
         <div class="col-md-7 order-md-1">
@@ -58,13 +57,13 @@
                         <label for="firstName">Nombre</label>
                         <input ng-model="editor.perfilNuevo.nombre" ng-minlength="3"
                                type="text" class="form-control" id="firstName"
-                               placeholder="{{editor.getUserLoggeado().nombre}}" required>
+                               placeholder="{{editor.getUserLoggeado().nombre}}" >
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="lastName">Apellido</label>
                         <input ng-model="editor.perfilNuevo.apellido" ng-minlength="3"
                                type="text" class="form-control" id="lastName"
-                               placeholder="{{editor.getUserLoggeado().apellido}}" required>
+                               placeholder="{{editor.getUserLoggeado().apellido}}" >
                     </div>
                 </div>
 
@@ -72,21 +71,21 @@
                     <div class="col-md-6 mb-3">
                         <label for="deporte">Deporte</label>
                         <select class="custom-select d-block w-100" ng-model="editor.perfilNuevo.deporte"
-                                ng-options="deporte for deporte in editor.deportes" id="deporte" required>
-                            <option value="">Choose...</option>
+                                ng-options="deporte for deporte in editor.deportes"  id="deporte">
+                            <option value="" disabled selected>{{editor.getUserLoggeado().deporte}}</option>
                         </select>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="tipo">Tipo</label>
-                        <select class="custom-select d-block w-100" id="tipo" required>
-                            <option value="">Choose...</option>
-                            <option ng-model="editor.perfilNuevo.tipo" value="">Coach</option>
-                            <option ng-model="editor.perfilNuevo.tipo" value="">Atleta</option>
+                        <select class="custom-select d-block w-100" id="tipo">
+                            <option value="" disabled selected>{{editor.getUserLoggeado().tipo}}</option>
+                            <option ng-model="editor.perfilNuevo.tipo">Coach</option>
+                            <option ng-model="editor.perfilNuevo.tipo">Atleta</option>
                         </select>
                     </div>
                 </div>
                 <hr class="mb-4">
-                <button id="update-p-btn" class="btn btn-lg btn-block" type="submit">Actualizar Perfil</button>
+                <button id="right-side" class="btn btn-lg btn-block" type="submit">Actualizar Perfil</button>
             </form>
         </div>
     </div>
