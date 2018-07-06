@@ -30,4 +30,28 @@ class UserService {
         return this.http.get(this.baseurl + "/search?deporte=" + deporte);
     }
 
+    editar() {
+        return this.http.put(this.baseurl + "/editar", this.userLoggeado)
+    }
+
+    setPassword(password) {
+        this.userLoggeado.password = password;
+    }
+
+    setNombre(nombre) {
+        this.userLoggeado.nombre = nombre;
+    }
+
+    setApellido(apellido) {
+        this.userLoggeado.apellido = apellido;
+    }
+
+    setDeporte(deporte) {
+        this.userLoggeado.deporte = deporte;
+    }
+
+    setTipo(tipo) {
+        this.userLoggeado.tipo = tipo;
+    }
+
 }

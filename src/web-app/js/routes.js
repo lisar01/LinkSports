@@ -20,6 +20,12 @@ const routes = function ($stateProvider, $urlRouterProvider) {
             url: "/main",
             templateUrl: "../partials/main.html",
             controller: "SearchController as SearchCtrl"
+        })
+
+        .state('editarPage', {
+            url: "/editar",
+            templateUrl: "../partials/editar.html",
+            controller: "EditarController as EditCtrl"
         });
 
 };

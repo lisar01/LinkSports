@@ -1,0 +1,12 @@
+.alert-on-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+}
+
+.alert {
+    margin: 0 auto;
+}
