@@ -20,6 +20,11 @@ const routes = function ($stateProvider, $urlRouterProvider) {
             url: "/editar",
             templateUrl: "../partials/editar.html",
             controller: "EditarController as EditCtrl"
+        })
+
+        .state('aboutPage', {
+            url: "/about",
+            templateUrl: "../partials/about.html"
         });
 
 };
