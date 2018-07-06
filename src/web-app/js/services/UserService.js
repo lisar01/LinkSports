@@ -30,6 +30,14 @@ class UserService {
         return this.http.get(this.baseurl + "/search?deporte=" + deporte);
     }
 
+    follow(followData) {
+        return this.http({
+            method: "POST",
+            url: this.baseurl + "/follow",
+            data: followData
+        })
+    }
+
     editar() {
         return this.http.put(this.baseurl + "/editar", this.userLoggeado)
     }

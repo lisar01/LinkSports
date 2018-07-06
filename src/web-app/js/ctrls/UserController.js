@@ -4,13 +4,13 @@ function UserController($scope, $state, UserService, SportService) {
     $scope.login = function () {
         const logininfo = {"username": $scope.username, "password": $scope.password};
         UserService.login(logininfo)
-            .then(function (response) {
-                    UserService.userLoggeado = response.data;
-                    $state.go('mainPage');
-                },
-                function (error) {
-                    alert(JSON.stringify(error.data.body));
-                })
+        .then(function (response) {
+            UserService.userLoggeado = response.data;
+            $state.go('mainPage');
+        },
+        function (error) {
+            alert(JSON.stringify(error.data.body));
+        })
     };
 
     $scope.signup = function () {
@@ -25,13 +25,30 @@ function UserController($scope, $state, UserService, SportService) {
             "tipo": $scope.tipo,
             "genero": $scope.genero
         };
-
         UserService.signup(user)
-            .then(function (response) {
-                    $('#success_signup').show();
-                },
-                function (error) {
-                    $('#error_signup').show();
-                })
+        .then(function (response) {
+            $('#success_signup').show();
+        },
+        function (error) {
+            $('#error_signup').show();
+        })
+    }
+
+    $scope.follow = function(userToFollow) {
+        const followData = {"loggedUsername": UserService.userLoggeado.username, "toFollow": userToFollow};
+        UserService.follow(followData)
+        .then(function(response) {
+            $state.reload();
+        },
+        function (error) {
+            alert(JSON.stringify(error.data.body));
+        });
+    }
+
+    $scope.isFollowing = function(user) {
+        for(let i=0; i < user.followers.length; i++) {
+            if(user.followers[i].username == UserService.userLoggeado) return true;
+        }
+        return false;
     }
 }

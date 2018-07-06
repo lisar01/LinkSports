@@ -63,7 +63,7 @@
                     <h5 class="card-header">Search</h5>
                     <div class="card-body">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
+                            <input type="text" class="form-control" ng-model="filterNombre" placeholder="Buscar por nombre..">
                             <span class="input-group-btn input-group-prepend">
                             <button class="btn fas fa-search" type="button"></button>
                         </span>
@@ -93,12 +93,16 @@
             <div class="col-md-8 padding-up">
 
                 <div class="row">
-                    <div class="col-md-4 col-sm-8" ng-repeat="user in buscador.resultados">
+                    <div class="col-md-4 col-sm-8" ng-repeat="user in buscador.resultados | filter:{nombre:filterNombre}">
                         <div class="card h-40 my-3 text-center search-card">
                             <a><img class="card-img-top w-75 mx-auto d-block" ng-src="{{buscador.imagenDe(user)}}"></a>
                             <div class="card-body">
                                 <h5 class="card-title">{{user.nombre}} {{user.apellido}}</h5>
                                 <p class="card-text">Deporte: {{user.deporte}}</p>
+                            </div>
+                            <div ng-controller="UserController" class="card-footer">
+                                <button ng-if="isFollowing(user) == false" type="button" ng-click="follow(user)" class="btn btn-success">Seguir</button>
+                                <button ng-if="isFollowing(user) == true" type="button" class="btn btn-success disabled">Siguiendo</button>
                             </div>
                         </div>
                     </div>
