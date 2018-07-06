@@ -22,9 +22,17 @@ const routes = function ($stateProvider, $urlRouterProvider) {
             controller: "EditarController as EditCtrl"
         })
 
+        .state('perfilPage', {
+            url: "/ver-perfil",
+            templateUrl: "../partials/ver-perfil.html",
+            controller: "VerPerfilController as PerfilCtrl"
+        })
+
+
         .state('aboutPage', {
             url: "/about",
             templateUrl: "../partials/about.html"
         });
+
 
 };
