@@ -1,0 +1,20 @@
+<head>
+    <link rel="stylesheet" href="/css/verPerfilStyles.css"/>
+</head>
+<div class="row" ng-controller="VerPerfilController as perfil">
+    <div class="col-sm-4">
+        <div id="left-side" class="card text-center">
+            <div class="card-header">
+                <h2>Mi Perfil</h2>
+            </div>
+            <img class="card-img-top w-50 mx-auto d-block py-1" src="/imagenes/61205.svg">
+            <div class="card-body">
+                <p class="card-text"><b>Username: </b> {{perfil.getUsername()}}</p>
+                <p class="card-text"><b>Nombre: </b> {{perfil.getNombre()}}</p>
+                <p class="card-text"><b>Apellido: </b> {{perfil.getApellido()}}</p>
+                <p class="card-text"><b>Deporte: </b> {{perfil.getDeporte()}}</p>
+                <p class="card-text"><b>Tipo: </b> {{perfil.getTipo()}}</p>
+            </div>
+        </div>
+    </div>
+</div>
