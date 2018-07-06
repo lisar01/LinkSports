@@ -8,12 +8,18 @@
 
     <link rel="stylesheet" href="css/indexStyles.css"/>
 
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
     <!-- JQUERY -->
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
 
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- POPPER.JS -->
+    <script src="node_modules/popper.js/dist/popper.min.js"></script>
 
     <!-- FONT AWESOME-->
     <link href="node_modules/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet">
@@ -47,13 +53,13 @@
             </ul>
             <ul class="navbar-nav ml-auto" ng-show="header.hayUserLoggeado()">
                 <li class="nav-item">
-                    <a class="nav-link fas fa-user fa-lg" ui-sref="perfilPage"></a>
+                    <a class="nav-link fas fa-user fa-lg" data-toggle="tooltip" data-placement="bottom" title="Mi Perfil" ui-sref="perfilPage"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fas fa-user-edit fa-lg" ui-sref="editarPage"></a>
+                    <a class="nav-link fas fa-user-edit fa-lg" data-toggle="tooltip" data-placement="bottom" title="Editar Perfil" ui-sref="editarPage"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fas fa-sign-out-alt fa-lg" ng-click="header.logOut()"></a>
+                    <a class="nav-link fas fa-sign-out-alt fa-lg" data-toggle="tooltip" data-placement="bottom" title="Cerrar Sesion" ng-click="header.logOut()"></a>
                 </li>
             </ul>
         </div>
